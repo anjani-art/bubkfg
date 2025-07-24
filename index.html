@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catatan Harian Flora</title>
+    <!-- Menghubungkan manifest.json untuk PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Menghubungkan style.css -->
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased text-gray-800">
+
+    <div class="container-wrapper">
+        <!-- Header Section -->
+        <header class="header-bg">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white text-shadow-lg drop-shadow-md">
+                Catatan Harian Flora
+            </h1>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="w-full max-w-4xl">
+            <!-- Form untuk menambahkan entri baru -->
+            <section class="new-entry-form mb-8">
+                <h2 class="text-2xl font-semibold text-green-700 mb-4">Tambahkan Entri Baru</h2>
+                <form id="add-entry-form">
+                    <input type="text" id="entry-title" placeholder="Judul Entri (misal: Mekarnya Mawar)" class="w-full p-3 mb-3 border border-green-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400" required>
+                    <textarea id="entry-content" placeholder="Tuliskan catatan Anda tentang flora di sini..." rows="6" class="w-full p-3 mb-3 border border-green-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400" required></textarea>
+                    <input type="text" id="entry-tags" placeholder="Tag (pisahkan dengan koma, misal: Bunga, Kebun)" class="w-full p-3 mb-4 border border-green-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out">
+                        Simpan Entri
+                    </button>
+                </form>
+            </section>
+
+            <div id="journal-entries-grid" class="journal-grid">
+                <!-- Entri jurnal akan dimuat di sini oleh JavaScript -->
+                <!-- Contoh entri awal telah dipindahkan ke script.js -->
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="w-full max-w-4xl mt-8 text-center text-gray-600 text-sm">
+            <p>&copy; 2025 Catatan Harian Flora. Dibuat dengan cinta untuk alam.</p>
+        </footer>
+    </div>
+
+    <!-- Menghubungkan script.js -->
+    <script src="/script.js"></script>
+    <script>
+        // Mendaftarkan Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker terdaftar dengan scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Pendaftaran Service Worker gagal:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
